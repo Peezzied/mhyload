@@ -31,7 +31,7 @@ const customFonts = {
 function Mhyrenz() {
   async function onFetchUpdateAsync() {
     const netinfo = await NetInfo.fetch()
-    if (netinfo.isConnected && !(netinfo.type === 'none')) {
+    if (netinfo.isConnected && (netinfo.type !== 'none')) {
       console.log('expo update')
       try {
         const update = await Updates.checkForUpdateAsync();
