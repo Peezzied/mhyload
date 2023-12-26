@@ -11,6 +11,7 @@ import BottomSheet from '@gorhom/bottom-sheet';
 import { useSharedState } from "./SharedStateCtx.js";
 import { TapGestureHandler } from "react-native-gesture-handler";
 import NetworkTabs from "./netTabs.js";
+import NetInfo, { useNetInfo } from '@react-native-community/netinfo';
 
 
 export default function Home({ navigation }){
@@ -29,7 +30,7 @@ export default function Home({ navigation }){
         setSharedState(false)
         sheetRef.current?.close()
     }
-
+    const status = useNetInfo()
     return(
         <>
         <StatusBar style="light" backgroundColor="#3ba1ce" animated={true}/>
