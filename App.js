@@ -16,6 +16,7 @@ import { smartIndex_ct, smartIndex_p, smartIndex_prefix, smartIndex_reg, smartIn
 import { tm_ct, tm_p, tm_prefix, tm_reg, tm_theme } from "./data/tm_index.js";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import * as Updates from 'expo-updates'
+import NetInfo from '@react-native-community/netinfo';
 
 const Stack = createStackNavigator();
 const customFonts = {
@@ -29,17 +30,26 @@ const customFonts = {
 
 function Mhyrenz() {
   async function onFetchUpdateAsync() {
-    try {
-      const update = await Updates.checkForUpdateAsync();
-  
-      if (update.isAvailable) {
-        await Updates.fetchUpdateAsync();
-        await Updates.reloadAsync();
+    const netinfo = await NetInfo.fetch()
+    if (netinfo.isConnected) {
+      try {
+        const update = await Updates.checkForUpdateAsync();
+          if (update.isAvailable) {
+            await Updates.fetchUpdateAsync();
+            await Updates.reloadAsync();
+            const isNew = Updates.UpdateEventType
+            if (!(isNew === isNew.NO_UPDATE_AVAILABLE)){
+              await Updates.readLogEntriesAsync().then((value)=>{
+                Alert.alert(value.message)
+              })
+              
+            }
+          }
+      } catch (error) {
+        // You can also add an alert() to see the error message in case of an error when fetching updates.
+        Alert.alert('Update',`${error}`);
+        
       }
-    } catch (error) {
-      // You can also add an alert() to see the error message in case of an error when fetching updates.
-      Alert.alert('Update',`${error}`);
-      
     }
   }
   useEffect(()=>{

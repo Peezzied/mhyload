@@ -6,6 +6,7 @@ import { Text, TextInput, HelperText } from "react-native-paper"
 import { Formik } from "formik"
 import { LoadSchema } from "../utils"
 import { spacing } from "../styles/global"
+import RNImmediatePhoneCall from 'react-native-immediate-phone-call'
 
 export const RegularLoad = memo(({loadMethod})=>{
     console.log('Regular has been rendered.')
@@ -19,7 +20,7 @@ export const RegularLoad = memo(({loadMethod})=>{
             Vibration.vibrate(100)
             const mmidCode = loadMethod.replace('[]', customerNum)
             console.log(`${mmidCode}*${formNum}`)
-            RNImmediatePhoneCall.immediatePhoneCall(`*${mmidCode}#`);
+            RNImmediatePhoneCall.immediatePhoneCall(`*${mmidCode}*${formNum}#`);
         }
         formSubmit()
     }

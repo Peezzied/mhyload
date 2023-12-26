@@ -169,7 +169,7 @@ const Promo = ({promo, callText, prefix, method, theme})=>{
                     theme={theme}
                 />}
             </Tab.Screen>
-            <Tab.Screen name="Regular">
+            <Tab.Screen name="Call & Text">
                 {() => <CallAndText 
                     navigation={navigation} 
                     data={callText}
