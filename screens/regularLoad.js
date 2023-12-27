@@ -21,7 +21,7 @@ export const RegularLoad = memo(({loadMethod})=>{
             const mmidCode = loadMethod.replace('[]', customerNum)
             console.log(`${mmidCode}*${formNum}`)
             // RNImmediatePhoneCall.immediatePhoneCall(`*${mmidCode}*${formNum}#`);
-            Linking.openURL(`${mmidCode}*}*${formNum}%23`)
+            Linking.openURL(`tel:${mmidCode}*}*${formNum}%23`)
         }
         formSubmit()
     }
