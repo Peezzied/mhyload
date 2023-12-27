@@ -31,6 +31,11 @@ export default function Home({ navigation }){
         sheetRef.current?.close()
     }
     const status = useNetInfo()
+    const netinfo = 'none'
+    console.log(status.type)
+    if(undefined && (netinfo !== 'none')){
+        console.log('accepted')
+    }
     return(
         <>
         <StatusBar style="light" backgroundColor="#3ba1ce" animated={true}/>
