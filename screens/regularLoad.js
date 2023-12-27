@@ -1,7 +1,7 @@
 import { memo } from "react"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { useSharedState } from "./SharedStateCtx"
-import { View, TouchableOpacity, ToastAndroid, Vibration } from "react-native"
+import { View, TouchableOpacity, ToastAndroid, Vibration, Linking } from "react-native"
 import { Text, TextInput, HelperText } from "react-native-paper"
 import { Formik } from "formik"
 import { LoadSchema } from "../utils"
@@ -20,7 +20,8 @@ export const RegularLoad = memo(({loadMethod})=>{
             Vibration.vibrate(100)
             const mmidCode = loadMethod.replace('[]', customerNum)
             console.log(`${mmidCode}*${formNum}`)
-            RNImmediatePhoneCall.immediatePhoneCall(`*${mmidCode}*${formNum}#`);
+            // RNImmediatePhoneCall.immediatePhoneCall(`*${mmidCode}*${formNum}#`);
+            Linking.openURL(`${mmidCode}*}*${formNum}%23`)
         }
         formSubmit()
     }

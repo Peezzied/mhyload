@@ -1,6 +1,6 @@
 import React, {useState, useRef, useCallback} from "react";
 import { MaterialIcons  } from '@expo/vector-icons'
-import { StyleSheet, View, Button, ScrollView, Pressable } from "react-native";
+import { StyleSheet, View, Button, ScrollView, Pressable, Linking } from "react-native";
 import { globalStyles, height, spacing, width } from "../styles/global";
 import { StatusBar } from "expo-status-bar";
 import ProductNet from "../screens/carousel.js";
@@ -12,6 +12,7 @@ import { useSharedState } from "./SharedStateCtx.js";
 import { TapGestureHandler } from "react-native-gesture-handler";
 import NetworkTabs from "./netTabs.js";
 import NetInfo, { useNetInfo } from '@react-native-community/netinfo';
+import { Link } from "@react-navigation/native";
 
 
 export default function Home({ navigation }){
@@ -35,6 +36,7 @@ export default function Home({ navigation }){
     console.log(status.type)
     if(undefined && (netinfo !== 'none')){
         console.log('accepted')
+        
     }
     return(
         <>
@@ -42,7 +44,7 @@ export default function Home({ navigation }){
         <View style={[styles.container]}>
             <View style={styles.div}>
                 <View style={styles.nav}>
-                    <Text style={[globalStyles.titleText, styles.header]}>MHYLOAD</Text>
+                    <Text style={[globalStyles.titleText, styles.header]}>MHYLOAD {status.isConnected===true && <Text>TRUE</Text>}</Text>
                 </View>
                 <View style={styles.filler}>
                     <View style={styles.content}>
